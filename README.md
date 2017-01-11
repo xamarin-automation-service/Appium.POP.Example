@@ -33,6 +33,10 @@ $ xcode-select -p
     + Override Existing Sessions: true
     + New Command Timeout: 7,200s
 + Go to Appium's iOS settings under advanced and ensure Xcode Path is set to Xcode7.app
++ For testing on iOS, change the following UDID in AppInitializer value to your device:
+``` java
+capabilities.setCapability(MobileCapabilityType.UDID, "your-udid");
+```
 + Tests can be run using the `mvn test` command from the project directory
 + To run iOS/Android tests, change the AppInitializer.executionOS field to your desired platform
 
