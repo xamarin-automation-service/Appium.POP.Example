@@ -3,8 +3,8 @@
 ###Requirements###
 + [Appium 1.5.3](https://github.com/appium/appium/archive/1.5.3.tar.gz)
 + Xcode 7: For help on installing side-by-side versions of Xcode, see section below
-+ Intellij
-+ Maven
++ IntelliJ
++ Maven: `brew install maven` if you do not have it installed already
 
 ###Multiple Xcode Versions###
 If you are trying to run iOS tests, a current limitation is that iOS 10 is not supported. Because of this, Xcode 8 is not supported with the compatible version of Appium. To get around this, you can install Xcode 7 along side Xcode 8.
