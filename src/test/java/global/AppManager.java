@@ -16,26 +16,25 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by ethand on 1/10/17.
  */
-public class AppInitializer {
-    public static OS executionOS = OS.IOS;
+public class AppManager {
+    public static Platform platform = Platform.ANDROID;
 
-    public enum OS {
+    public enum Platform {
         ANDROID,
         IOS
     }
 
-    public static AppInitializer instance = new AppInitializer();
+    public static AppManager instance = new AppManager();
 
     private EnhancedAndroidDriver<MobileElement> androidDriver;
     private EnhancedIOSDriver<MobileElement> iOSDriver;
 
-
     public void startApp() throws MalformedURLException {
-        if ((executionOS == OS.ANDROID && androidDriver != null) || (executionOS == OS.IOS && iOSDriver != null)) {
+        if ((platform == Platform.ANDROID && androidDriver != null) || (platform == Platform.IOS && iOSDriver != null)) {
             return;
         }
 
-        switch(executionOS){
+        switch(platform){
             case ANDROID:
                 File classpathRoot = new File(System.getProperty("user.dir"));
                 File appDir = new File(classpathRoot, "/app/Android");
@@ -66,15 +65,15 @@ public class AppInitializer {
     }
 
     public AppiumDriver getDriver() throws Exception {
-        if ((executionOS == OS.ANDROID && androidDriver == null) || (executionOS == OS.IOS && iOSDriver == null)) {
-            throw new Exception("You must call AppInitializer.instance.startApp() before using the driver");
+        if ((platform == Platform.ANDROID && androidDriver == null) || (platform == Platform.IOS && iOSDriver == null)) {
+            throw new Exception("You must call AppManager.instance.startApp() before using the driver");
         }
-        return executionOS == OS.ANDROID ? androidDriver : iOSDriver;
+        return platform == Platform.ANDROID ? androidDriver : iOSDriver;
     }
 
-    public void stopApp() {
-        if ((executionOS == OS.ANDROID && androidDriver != null) || (executionOS == OS.IOS && iOSDriver != null)) {
-            switch (executionOS) {
+    public void stopApp() throws Exception {
+        if (getDriver() != null) {
+            switch (platform) {
                 case ANDROID:
                     androidDriver.quit();
                     androidDriver = null;
@@ -88,7 +87,7 @@ public class AppInitializer {
     }
 
     public void screenshot(String label) {
-        if (executionOS == OS.ANDROID) {
+        if (platform == Platform.ANDROID) {
             androidDriver.label(label);
         } else {
             iOSDriver.label(label);

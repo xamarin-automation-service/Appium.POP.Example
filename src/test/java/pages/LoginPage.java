@@ -1,5 +1,7 @@
 package pages;
 
+import global.BasePage;
+import global.Trait;
 import org.openqa.selenium.By;
 
 /**
@@ -11,9 +13,16 @@ public class LoginPage extends BasePage {
     By passwordField;
     By signInButton;
 
-    public LoginPage() throws Exception {
-        super(By.id("SignInButton"), By.id("SignInButton"));
+    @Override
+    protected void setTrait() {
+        Trait pageTrait = new Trait();
+        pageTrait.setAndroid(By.id("SignInButton"));
+        pageTrait.setiOS(By.id("SignInButton"));
 
+        trait = pageTrait;
+    }
+
+    public LoginPage() throws Exception {
         usernameField = By.id("EmailTextField");
         passwordField = By.id("PasswordTextField");
         signInButton = By.id("SignInButton");

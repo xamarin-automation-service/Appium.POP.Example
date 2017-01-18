@@ -1,6 +1,5 @@
-package pages;
+package global;
 
-import global.AppInitializer;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 
@@ -9,13 +8,16 @@ public abstract class BasePage {
     protected static boolean onAndroid;
     protected static boolean oniOS;
 
-    protected By trait;
+    protected Trait trait;
 
-    protected BasePage(By androidTrait, By iosTrait) throws Exception {
-        onAndroid = AppInitializer.executionOS == AppInitializer.OS.ANDROID;
+    abstract protected void setTrait();
+
+    protected BasePage() throws Exception {
+        onAndroid = AppManager.platform == AppManager.Platform.ANDROID;
         oniOS = !onAndroid;
 
-        trait = onAndroid ? androidTrait : iosTrait;
+        if (trait.getCurrent() == null)
+            throw new Exception("Page trait is not set");
 
         assertOnPage();
 
@@ -23,12 +25,12 @@ public abstract class BasePage {
     }
 
     protected void assertOnPage() throws Exception {
-        getDriver().findElement(trait);
+        getDriver().findElement(trait.getCurrent());
         screenshot(String.format("On Page: %s", this.getClass().getSimpleName()));
     }
 
     protected AppiumDriver getDriver() throws Exception {
-        return AppInitializer.instance.getDriver();
+        return AppManager.instance.getDriver();
     }
 
     private By hamburgerButton;
@@ -59,6 +61,6 @@ public abstract class BasePage {
     }
 
     public void screenshot(String label) {
-        AppInitializer.instance.screenshot(label);
+        AppManager.instance.screenshot(label);
     }
 }

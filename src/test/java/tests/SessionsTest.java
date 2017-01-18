@@ -1,6 +1,6 @@
 package tests;
 
-import global.AbstractSetup;
+import global.BaseTestFixture;
 import com.xamarin.testcloud.appium.Factory;
 import org.junit.Rule;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import pages.SessionsPage;
 /**
  * Created by ethand on 1/10/17.
  */
-public class SessionsTest extends AbstractSetup {
+public class SessionsTest extends BaseTestFixture {
     @Rule
     public TestWatcher watcher = Factory.createWatcher();
 
