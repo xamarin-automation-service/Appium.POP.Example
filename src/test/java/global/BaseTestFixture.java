@@ -10,13 +10,13 @@ public class BaseTestFixture {
 
     @Before
     public void setUp() throws Exception {
-        AppManager.instance.startApp();
-        AppManager.instance.screenshot("App Launched");
+        AppManager.startApp();
+        AppManager.screenshot("App Launched");
     }
 
     @After
     public void tearDown() throws Exception {
-        AppManager.instance.screenshot("App Terminated");
-        AppManager.instance.stopApp();
+        AppManager.screenshot("App Terminated");
+        AppManager.stopApp();
     }
 }

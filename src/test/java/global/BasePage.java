@@ -30,7 +30,7 @@ public abstract class BasePage {
     }
 
     protected AppiumDriver getDriver() throws Exception {
-        return AppManager.instance.getDriver();
+        return AppManager.getDriver();
     }
 
     private By hamburgerButton;
@@ -61,6 +61,6 @@ public abstract class BasePage {
     }
 
     public void screenshot(String label) {
-        AppManager.instance.screenshot(label);
+        AppManager.screenshot(label);
     }
 }

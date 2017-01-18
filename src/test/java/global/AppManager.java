@@ -24,12 +24,10 @@ public class AppManager {
         IOS
     }
 
-    public static AppManager instance = new AppManager();
+    private static EnhancedAndroidDriver<MobileElement> androidDriver;
+    private static EnhancedIOSDriver<MobileElement> iOSDriver;
 
-    private EnhancedAndroidDriver<MobileElement> androidDriver;
-    private EnhancedIOSDriver<MobileElement> iOSDriver;
-
-    public void startApp() throws MalformedURLException {
+    public static void startApp() throws MalformedURLException {
         if ((platform == Platform.ANDROID && androidDriver != null) || (platform == Platform.IOS && iOSDriver != null)) {
             return;
         }
@@ -64,14 +62,14 @@ public class AppManager {
         }
     }
 
-    public AppiumDriver getDriver() throws Exception {
+    public static AppiumDriver getDriver() throws Exception {
         if ((platform == Platform.ANDROID && androidDriver == null) || (platform == Platform.IOS && iOSDriver == null)) {
             throw new Exception("You must call AppManager.instance.startApp() before using the driver");
         }
         return platform == Platform.ANDROID ? androidDriver : iOSDriver;
     }
 
-    public void stopApp() throws Exception {
+    public static void stopApp() throws Exception {
         if (getDriver() != null) {
             switch (platform) {
                 case ANDROID:
@@ -86,7 +84,7 @@ public class AppManager {
         }
     }
 
-    public void screenshot(String label) {
+    public static void screenshot(String label) {
         if (platform == Platform.ANDROID) {
             androidDriver.label(label);
         } else {
