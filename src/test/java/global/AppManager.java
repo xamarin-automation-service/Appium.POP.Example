@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Created by ethand on 1/10/17.
  */
 public class AppManager {
-    public static Platform platform = Platform.ANDROID;
+    public static Platform platform = Platform.IOS;
 
     public enum Platform {
         ANDROID,
@@ -50,7 +50,7 @@ public class AppManager {
                 app = new File(appDir, "XamarinEvolveiOS.ipa");
                 capabilities = new DesiredCapabilities();
                 capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
-                capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.3");
+//                capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "9.3");
                 capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, "");
                 capabilities.setCapability(MobileCapabilityType.UDID, "eacaf802667db5ec7b7db84002382c2761e9186d");
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "NotUsed");

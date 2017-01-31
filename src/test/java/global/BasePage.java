@@ -13,6 +13,8 @@ public abstract class BasePage {
     abstract protected void setTrait();
 
     protected BasePage() throws Exception {
+        setTrait();
+
         onAndroid = AppManager.platform == AppManager.Platform.ANDROID;
         oniOS = !onAndroid;
 

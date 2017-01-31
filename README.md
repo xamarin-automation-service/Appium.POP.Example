@@ -1,7 +1,9 @@
 #Appium Java Cross Platform Tests#
 
 ###Requirements###
-+ [Appium 1.5.3](https://github.com/appium/appium/archive/1.5.3.tar.gz)
++ [Appium 1.5.3](https://www.npmjs.com/package/appium) (`npm install -g appium@1.5.3`)
+  + I recommend using appium via node module instead of appium.app. This allows the appium server to be started by simply running `appium`
+  + However, feel free to use what you are comfortable with
 + Xcode 7: For help on installing side-by-side versions of Xcode, see section below
 + IntelliJ
 + Maven: `brew install maven` if you do not have it installed already
