@@ -1,5 +1,7 @@
 #Appium Java Cross Platform Tests#
 
+**Note:** This serves as an in-progress example for writing cross-platform (Android/iOS) Appium Java tests, for use in Xamarin Test Cloud. As features become available, this sample will change.
+
 ###Requirements###
 + [Appium 1.5.3](https://www.npmjs.com/package/appium) (`npm install -g appium@1.5.3`)
   + I recommend using appium via node module instead of appium.app. This allows the appium server to be started by simply running `appium`
