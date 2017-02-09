@@ -1,66 +1,67 @@
 package global;
 
 import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 public abstract class BasePage {
 
-    protected static boolean onAndroid;
-    protected static boolean oniOS;
+    public final boolean onAndroid;
+    public final boolean oniOS;
+    public final AppiumDriver driver;
+    public final WebDriverWait wait;
 
-    protected Trait trait;
-
-    abstract protected void setTrait();
-
-    protected BasePage() throws Exception {
-        onAndroid = AppManager.platform == AppManager.Platform.ANDROID;
-        oniOS = !onAndroid;
-
-        if (trait.getCurrent() == null)
-            throw new Exception("Page trait is not set");
+    public BasePage() {
+        onAndroid = AppManager.getPlatform() == Platform.ANDROID;
+        oniOS = AppManager.getPlatform() == Platform.IOS;
+        driver = AppManager.getAppiumDriver();
+        wait = AppManager.getWaitDriver();
 
         assertOnPage();
-
-        initializeCommonQueries();
+        label(String.format("On Page: %s", this.getClass().getSimpleName()));
     }
 
-    protected void assertOnPage() throws Exception {
-        getDriver().findElement(trait.getCurrent());
-        screenshot(String.format("On Page: %s", this.getClass().getSimpleName()));
+    public abstract PlatformQuery trait();
+
+    public void label(String label) {
+        AppManager.label(label);
     }
 
-    protected AppiumDriver getDriver() throws Exception {
-        return AppManager.getDriver();
+    public void assertOnPage() {
+        assertOnPage(AppManager.LONG_TIMEOUT);
     }
 
-    private By hamburgerButton;
-    private void initializeCommonQueries() {
-        if (onAndroid) {
-            hamburgerButton = By.xpath("//android.widget.ImageButton[@content-desc='OK']");
-        } else {
+    public void assertOnPage(long timeOutInSeconds) {
+        String message = String.format(
+                "Unable to verify on page: %s. Waited for '%s'",
+                this.getClass().getSimpleName(),
+                trait().getCurrent().toString()
+        );
 
-        }
+        wait
+                .withTimeout(timeOutInSeconds, TimeUnit.SECONDS)
+                .withMessage(message)
+                .until(ExpectedConditions.presenceOfElementLocated(trait().getCurrent()));
     }
 
-    private By getMenuItem(String title) {
-        if (onAndroid) {
-            return By.xpath(String.format("//android.widget.CheckedTextView[@text='%s']", title));
-        }
-        else {
-            return By.xpath(String.format("//UIATabBar//UIAButton[@name='%s']", title));
-        }
+    public void waitForPageToLeave() {
+        waitForPageToLeave(AppManager.SHORT_TIMEOUT);
     }
 
-    public void selectMenuItem(String marked) throws Exception {
-        if (onAndroid) {
-            getDriver().findElement(hamburgerButton).click();
-            screenshot("Menu Opened");
-        }
-        getDriver().findElement(getMenuItem(marked)).click();
-        screenshot(String.format("Tapped menu item: %s", marked));
-    }
+    public void waitForPageToLeave(long timeOutInSeconds) {
+        ExpectedCondition present = ExpectedConditions.presenceOfElementLocated(trait().getCurrent());
+        String message = String.format(
+                "Unable to verify *not* on page: %s. Waited for no '%s'",
+                this.getClass().getSimpleName(),
+                trait().getCurrent().toString()
+        );
 
-    public void screenshot(String label) {
-        AppManager.screenshot(label);
+        wait
+                .withTimeout(timeOutInSeconds, TimeUnit.SECONDS)
+                .withMessage(message)
+                .until(ExpectedConditions.not(present));
     }
 }
