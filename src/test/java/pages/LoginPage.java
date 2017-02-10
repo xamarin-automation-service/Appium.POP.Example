@@ -27,7 +27,7 @@ public class LoginPage extends EvolveBasePage {
                 .setiOS(By.id("SignInButton"));
     }
 
-    public LoginPage EnterCredentials(String username, String password) {
+    public LoginPage enterCredentials(String username, String password) {
         driver.findElement(usernameField).click();
         driver.findElement(usernameField).sendKeys(username);
         label("Entered username");
@@ -41,7 +41,7 @@ public class LoginPage extends EvolveBasePage {
         return this;
     }
 
-    public void TapSignInButton() {
+    public void tapSignInButton() {
         driver.findElement(signInButton).click();
         label("Tapped: 'Sign in'");
     }

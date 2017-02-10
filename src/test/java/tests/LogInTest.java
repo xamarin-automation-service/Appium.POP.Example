@@ -18,7 +18,7 @@ public class LogInTest extends BaseTestFixture{
     @Test
     public void testLogInWithFakeCredentials() {
         new LoginPage()
-                .EnterCredentials("xtc@xamarin.com", "fake")
-                .TapSignInButton();
+                .enterCredentials("xtc@xamarin.com", "fake")
+                .tapSignInButton();
     }
 }
