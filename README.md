@@ -28,6 +28,8 @@ $ xcode-select -p
 ```
 
 ###Running the tests locally###
+
+####1. Prepare the Appium test server####
 + Run `appium-doctor` or select the Button in Appium.app. Ensure that all checks pass
 + Open up Appium.app, select the appropriate platform settings
 + Set Appium's main settings to:
@@ -37,12 +39,17 @@ $ xcode-select -p
     + Override Existing Sessions: true
     + New Command Timeout: 7,200s
 + Go to Appium's iOS settings under advanced and ensure Xcode Path is set to Xcode7.app
-+ For testing on iOS, change the following UDID in AppInitializer value to your device:
-``` java
-capabilities.setCapability(MobileCapabilityType.UDID, "your-udid");
-```
-+ Tests can be run using the `mvn test` command from the project directory
-+ To run iOS/Android tests, change the AppInitializer.executionOS field to your desired platform
++ Launch the test server
+
+####2a. Running tests from command line####
++ Run `mvn test -P [platform]` from the project directory
+    + `[platform]` should be either `android`, `ios`, or `ios-simulator` depending on which platform you want to run your tests on
+
+####2b. Running tests from IntelliJ####
++ Open the "Maven Projects" tool window
++ Under "Profiles" choose the platfrom you wish to tests on (making sure only one is checked)
+    + Should be either `android`, `ios`, or `ios-simulator`
++ Right click on the test(s) that you wish to run and choose "Run"
 
 ###Running the tests in Xamarin Test Cloud###
 
