@@ -1,30 +1,29 @@
 package tests;
 
-import global.BaseTestFixture;
-import com.xamarin.testcloud.appium.Factory;
-import org.junit.Rule;
+import global.*;
 import org.junit.Test;
-import org.junit.rules.TestWatcher;
-import pages.FeedPage;
-import pages.LoginPage;
-import pages.SessionsPage;
+import pages.*;
 
 /**
  * Created by ethand on 1/10/17.
  */
 public class SessionsTest extends BaseTestFixture {
-    @Rule
-    public TestWatcher watcher = Factory.createWatcher();
 
     @Test
-    public void testNavigateToSessions() throws Exception {
-        new LoginPage()
-                .EnterCredentials("xtc@xamarin.com", "fake")
-                .TapSignInButton();
-
+    public void testNavigateToSessions() {
         new FeedPage()
                 .selectMenuItem("Sessions");
 
         new SessionsPage();
+    }
+
+    @Test
+    public void testSearchForSession() {
+        new FeedPage()
+                .selectMenuItem("Sessions");
+
+        new SessionsPage()
+            .search("xaml")
+            .verifyTopResult("Mastering XAML in Xamarin.Forms");
     }
 }

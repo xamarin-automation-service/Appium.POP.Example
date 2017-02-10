@@ -1,47 +1,53 @@
 package pages;
 
-import global.BasePage;
-import global.Trait;
+import global.*;
 import org.openqa.selenium.By;
 
 /**
  * Created by ethand on 1/10/17.
  */
-public class LoginPage extends BasePage {
+public class LoginPage extends EvolveBasePage {
 
-    By usernameField;
-    By passwordField;
-    By signInButton;
+    private By usernameField;
+    private By passwordField;
+    private By signInButton;
+    private By notNowButton;
 
-    @Override
-    protected void setTrait() {
-        Trait pageTrait = new Trait();
-        pageTrait.setAndroid(By.id("SignInButton"));
-        pageTrait.setiOS(By.id("SignInButton"));
-
-        trait = pageTrait;
-    }
-
-    public LoginPage() throws Exception {
+    public LoginPage() {
         usernameField = By.id("EmailTextField");
         passwordField = By.id("PasswordTextField");
         signInButton = By.id("SignInButton");
+        notNowButton = By.id("NotNowButton");
     }
 
-    public LoginPage EnterCredentials(String username, String password) throws Exception {
-        getDriver().findElement(usernameField).sendKeys(username);
-        screenshot("Entered username");
-        getDriver().hideKeyboard();
+    @Override
+    public PlatformQuery trait() {
+        return new PlatformQuery()
+                .setAndroid(By.id("SignInButton"))
+                .setiOS(By.id("SignInButton"));
+    }
 
-        getDriver().findElement(passwordField).sendKeys(password);
-        screenshot("Entered password");
-        getDriver().hideKeyboard();
+    public LoginPage enterCredentials(String username, String password) {
+        driver.findElement(usernameField).click();
+        driver.findElement(usernameField).sendKeys(username);
+        label("Entered username");
+        driver.hideKeyboard();
+
+        driver.findElement(passwordField).click();
+        driver.findElement(passwordField).sendKeys(password);
+        label("Entered password");
+        driver.hideKeyboard();
 
         return this;
     }
 
-    public void TapSignInButton() throws Exception {
-        getDriver().findElement(signInButton).click();
-        screenshot("Tapped: 'Sign in'");
+    public void tapSignInButton() {
+        driver.findElement(signInButton).click();
+        label("Tapped: 'Sign in'");
+    }
+
+    public void skip() {
+        driver.findElement(notNowButton).click();
+        label("Tapped: 'Not Now'");
     }
 }
