@@ -107,7 +107,7 @@ public class AppManager {
 
                 // Use .app for simulator
                 if (envPlatform.equals("ios-simulator")) {
-                    app = new File(classpathRoot, "app/iOS/untitled/XamarinEvolveiOS.app");
+                    app = new File(classpathRoot, "app/iOS/XamarinEvolveiOS.app");
                 }
 
                 capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
