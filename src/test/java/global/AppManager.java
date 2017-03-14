@@ -111,7 +111,6 @@ public class AppManager {
                 }
 
                 capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-                capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.1");
                 capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
                 capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
                 capabilities.setCapability("autoAcceptAlerts",true);
