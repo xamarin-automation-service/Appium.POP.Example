@@ -54,7 +54,7 @@ mvn -DskipTests -P prepare-for-upload package
 Perform upload:
 
 ```
-xtc test /path/to/app <api-key> --devices <selection> --user <email> --workspace target/upload 
+xtc test /path/to/app <api-key> --devices <selection> --user <email> --workspace target/upload
 ```
 *Note: If you are having trouble targeting the `xtc` command, try executing with the fully qualified path to the package.*
 
@@ -64,7 +64,7 @@ xtc test /path/to/app <api-key> --devices <selection> --user <email> --workspace
 * No support for TestNG
 * No support for Android 4.2 or prior
 * Maven version must be atleast 3.3.9
-* Support for Appium version 1.6 only 
-* JUnit 4.9 or newer 
+* Support for Appium version 1.6 only
+* JUnit 4.9 or newer
 * Automating browsers (web testing) is not supported.
 * Tests that launch multiple apps or no apps are not currently supported. The test must launch precisely one app.
