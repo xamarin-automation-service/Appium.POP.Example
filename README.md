@@ -3,29 +3,13 @@
 **Note:** This serves as an in-progress example for writing cross-platform (Android/iOS) Appium Java tests, for use in Xamarin Test Cloud. As features become available, this sample will change.
 
 ###Requirements###
-+ [Appium 1.5.3](https://www.npmjs.com/package/appium) (`npm install -g appium@1.5.3`)
++ [Appium 1.6.3](https://www.npmjs.com/package/appium) (`npm install -g appium@1.6.3`)
   + I recommend using appium via node module instead of appium.app. This allows the appium server to be started by simply running `appium`
   + However, feel free to use what you are comfortable with
-+ Xcode 7: For help on installing side-by-side versions of Xcode, see section below
++ Xcode 8
 + IntelliJ
 + Maven: `brew install maven` if you do not have it installed already
-
-###Multiple Xcode Versions###
-If you are trying to run iOS tests, a current limitation is that iOS 10 is not supported. Because of this, Xcode 8 is not supported with the compatible version of Appium. To get around this, you can install Xcode 7 along side Xcode 8.
-
-+ Download Xcode 7 from [Apple](http://developer.apple.com/download/more) 
-+ Copy Xcode.app to your desktop (just not /Applications/), and rename to Xcode7.app
-+ Move Xcode7.app to /Applications/.
-+ Open Xcode7 and accept the terms and conditions
-
-You're all set to switch between Xcode versions! In order to select which Xcode command line tools are used (Appium needs to use Xcode 7 CLI), you will need to run the command:
-``` bash
-$ sudo xcode-select --switch /Applications/Xcode7.app
-```
-To see which verion of Xcode CLI are currently in use:
-``` bash
-$ xcode-select -p
-```
++ Additional Setup to run on iOS Devices can be found [here] (http://appium.io/slate/en/master/?ruby#appium-on-real-ios-devices).
 
 ###Running the tests locally###
 
@@ -78,12 +62,9 @@ xtc test /path/to/app <api-key> --devices <selection> --user <email> --workspace
 
 ###Limitations###
 * No support for TestNG
-* No support for iOS 10
-* No support for Android 7.0 (Nougat)
 * No support for Android 4.2 or prior
 * Maven version must be atleast 3.3.9
-* Support for Appium version 1.5 only 
+* Support for Appium version 1.6 only 
 * JUnit 4.9 or newer 
 * Automating browsers (web testing) is not supported.
 * Tests that launch multiple apps or no apps are not currently supported. The test must launch precisely one app.
-* Performance data is not yet included in the test reports

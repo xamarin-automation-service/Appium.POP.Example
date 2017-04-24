@@ -76,7 +76,7 @@ public class AppManager {
 
         // The value of DEVICE_NAME is only used for running on the iOS simulator,
         // but must also have some (any) value for iOS and Android physical devices
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 7");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
 
         URL driverUrl;
         try {
@@ -114,6 +114,8 @@ public class AppManager {
                 capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "10.1");
                 capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
                 capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
+                capabilities.setCapability("xcodeOrgId", "31DEE37914ED4F18EBDDC387E24CAE97266FD6A9");
+                capabilities.setCapability("xcodeSigningId", "iPhone Developer");
                 capabilities.setCapability("autoAcceptAlerts",true);
 
                 // UDID only used for physical device
