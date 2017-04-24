@@ -9,7 +9,7 @@
 + Xcode 8
 + IntelliJ
 + Maven: `brew install maven` if you do not have it installed already
-+ Additional Setup to run on iOS Devices can be found [here] (http://appium.io/slate/en/master/?ruby#appium-on-real-ios-devices).
++ Additional Setup to run on iOS Devices can be found [here](http://appium.io/slate/en/master/?ruby#appium-on-real-ios-devices).
 
 ### Running the tests locally
 
