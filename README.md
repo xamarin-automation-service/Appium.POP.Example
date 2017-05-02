@@ -34,7 +34,7 @@
 
 ### From IntelliJ
 + Open the "Maven Projects" tool window
-+ Under "Profiles" choose the platfrom you wish to tests on (making sure only one is checked)
++ Under "Profiles" choose the platform you wish to test on (making sure only one is checked)
     + Should be either `android`, `ios`, or `ios-simulator`
 + Right click on the test(s) that you wish to run and choose "Run"
 
