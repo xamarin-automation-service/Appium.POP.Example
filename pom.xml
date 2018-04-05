@@ -13,7 +13,19 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <dependency>
+            <groupId>com.microsoft.appcenter</groupId>
+            <artifactId>appium-test-extension</artifactId>
+            <version>1.0</version>
+        </dependency>
         <dependency>
             <groupId>com.xamarin.testcloud</groupId>
             <artifactId>appium</artifactId>
