@@ -1,6 +1,6 @@
 package global;
 
-import com.xamarin.testcloud.appium.Factory;
+import com.microsoft.appcenter.appium.Factory;
 import io.appium.java_client.AppiumDriver;
 import org.junit.After;
 import org.junit.Before;
@@ -43,6 +43,5 @@ public class BaseTestFixture {
         if (onAndroid || System.getenv("XTC_PLATFORM").equals("ios-simulator")) {
             new LoginPage()
                     .skip();
-        }
     }
 }

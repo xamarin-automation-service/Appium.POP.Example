@@ -1,5 +1,7 @@
 package tests;
 
+import com.microsoft.appcenter.appium.Factory;
+import com.microsoft.appcenter.appium.EnhancedIOSDriver;
 import global.*;
 import org.junit.Test;
 import pages.*;
@@ -9,12 +11,20 @@ import pages.*;
  */
 public class SessionsTest extends BaseTestFixture {
 
+    @Rule
+    public TestWatcher watcher = Factory.createWatcher();
+    
     @Test
     public void testNavigateToSessions() {
         new FeedPage()
                 .selectMenuItem("Sessions");
 
         new SessionsPage();
+    }
+
+    @After
+    public void TearDown(){
+        driver.quit();
     }
 
     @Test

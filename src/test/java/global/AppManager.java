@@ -1,13 +1,16 @@
 package global;
 
-import com.xamarin.testcloud.appium.EnhancedAndroidDriver;
-import com.xamarin.testcloud.appium.EnhancedIOSDriver;
-import com.xamarin.testcloud.appium.Factory;
+import com.microsoft.appcenter.appium.EnhancedIOSDriver;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.junit.Rule;
+import org.junit.rules.TestWatcher;
+import com.microsoft.appcenter.appium.Factory;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.microsoft.appcenter.appium.EnhancedAndroidDriver;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -26,6 +29,9 @@ public class AppManager {
     private static EnhancedAndroidDriver<MobileElement> androidDriver;
     private static EnhancedIOSDriver<MobileElement> iOSDriver;
     private static WebDriverWait waitDriver;
+
+    @Rule
+    public TestWatcher watcher = com.microsoft.appcenter.appium.Factory.createWatcher();
 
     public static Platform getPlatform() {
         if (platform != null) {
